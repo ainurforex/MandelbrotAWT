@@ -8,8 +8,9 @@ public class PaintIt extends JFrame {
 
     public PaintIt() {
         f.setTitle("Mandelbrot");
-        f.setSize(800, 600);
+        f.setSize(1024, 768);
         f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        f.setResizable(false);
 
         jp = new GPanel();
         f.add(jp);
@@ -34,10 +35,10 @@ public class PaintIt extends JFrame {
         public void paintComponent(Graphics g) {
             int width = getWidth();
             int height = getHeight();
-
-            double x0 = (width / 2);
-            double y0 = (height / 2);
-            double scale = Math.min(height,width)/4;
+            double scaleKoef=0.25;
+            double x0 = (width / 2)-0;
+            double y0 = (height / 2)+0;
+            double scale = Math.min(height,width)*scaleKoef;
 
             double lenghtX0 = 1 * scale;
             double lenghtY0 = 1 * scale;
@@ -71,6 +72,7 @@ public class PaintIt extends JFrame {
                 return i;
             }
             z = z.mul(z).add(z0);
+
         }
 
         return 0;
@@ -89,7 +91,7 @@ public class PaintIt extends JFrame {
 
                 for (int k = 0; k < 4; k++) {
 
-                    colors256[m++] = new Color(red[i], green[j], blue[k]);
+                    colors256[m++] = new Color(red[i], blue[k], green[j]);
                 }
             }
         }
